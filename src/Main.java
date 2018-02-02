@@ -1,3 +1,5 @@
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,15 +27,42 @@ public class Main {
         dicMap.put(3,houseHold);
         dicMap.put("taxRate",taxRate);
 
+        int count = 0;
         Scanner xx = new Scanner( System.in );
-        System.out.print("Enter the filing status: ");
-        int filing = xx.nextInt();
-        System.out.print("Enter the taxable income: ");
-        int income = xx.nextInt();
+        System.out.println("Please type the number of person you want to compute the tax");
+        String instru = xx.next();
 
-        //computing
-        float sum = getTax(filing,income,dicMap);
-        System.out.println("Tax is "+sum);
+        while(!isNumber(instru)){
+            System.out.println("You are not type a number, please type again!");
+            instru = xx.next();
+        }
+        count = Integer.parseInt(instru);
+
+        for(int i = 1; i<(count+1);i++ ){
+            System.out.println("Count : "+i+", Totle : "+count);
+            System.out.println("The filing status : 1 for Single, 2 for Married Filing Jointly or Qualified Widow(er), 3 for Married Filing Separately, 4 for Head of Household");
+            System.out.print("Enter the filing status: ");
+            String fil = xx.next();
+            while(!checkFiling(fil)){
+                System.out.println("The filing you type is invalid, please type again!");
+                System.out.print("Enter the filing status: ");
+                fil = xx.next();
+            }
+            int filing = Integer.parseInt(fil);
+
+            System.out.print("Enter the taxable income: ");
+            String inc = xx.next();
+            while (!isNumber(inc)){
+                System.out.println("The filing you type is invalid, please type again!");
+                System.out.print("Enter the taxable income: ");
+                inc = xx.next();
+            }
+            int income = Integer.parseInt(inc);
+
+            //computing
+            float sum = getTax(filing,income,dicMap);
+            System.out.println("Tax is "+sum);
+        }
     }
 
     public static Float getTax(int filing, int income, Map dicMap){
@@ -57,6 +86,26 @@ public class Main {
             }
         }
         return sum;
+    }
 
+    public static Boolean isNumber(String instru){
+        try{
+            Integer.parseInt(instru);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
+    }
+
+    public static Boolean checkFiling(String filing){
+        try{
+            int fil = Integer.parseInt(filing);
+            if(fil<0 || fil>3){
+                return false;
+            }
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 }
