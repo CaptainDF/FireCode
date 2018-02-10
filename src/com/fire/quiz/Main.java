@@ -1,4 +1,4 @@
-package com.fire.demo1;
+package com.fire.quiz;
 
 import java.util.HashMap;
 import java.util.Map;
