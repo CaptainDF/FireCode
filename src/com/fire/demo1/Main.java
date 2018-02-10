@@ -1,4 +1,4 @@
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+package com.fire.demo1;
 
 import java.util.HashMap;
 import java.util.Map;
