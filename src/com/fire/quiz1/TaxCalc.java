@@ -1,10 +1,10 @@
-package com.fire.quiz;
+package com.fire.quiz1;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class TaxCalc {
 
     /*
     不同等级对应不同税率
@@ -17,6 +17,7 @@ public class Main {
     private static int[] separately = {0,8350,33950,68525,104425,186476};
     private static int[] houseHold = {0,11950,45500,117450,190200,372950};
     private static float[] taxRate = {0.1f,0.15f,0.25f,0.28f,0.33f,0.35f};
+
 
     public static void main(String[] args) {
 
