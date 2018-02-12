@@ -8,7 +8,8 @@ public class Direction extends Thread{
 	Maze maze;
 	Position location;
 	int[][] mark;
-	LinkedList map = new LinkedList();
+	//使用LinkedList记录操作顺序，进行死角回退
+	LinkedList<String> map = new LinkedList<String>();
 
 	Direction(Maze maze, Position location) {
 		
@@ -56,19 +57,33 @@ public class Direction extends Thread{
 		// in the Position.java class, appending information into the JTextArea object
 
 		while(!maze.isDone()) {
-				
             if(checkDown()&&this.maze.moveDown()){
+            	map.push("down");
             	mark[maze.getCurrRow()][maze.getCurrCol()]=1;
                 location.textArea.append("Moved to row " + maze.getCurrRow() + ", column " + maze.getCurrCol() + "\n");
             }else if(checkLeft()&&this.maze.moveLeft()){
+            	map.push("left");
 				mark[maze.getCurrRow()][maze.getCurrCol()]=1;
 				location.textArea.append("Moved to row " + maze.getCurrRow() + ", column " + maze.getCurrCol() + "\n");
 			}else if(checkUp()&&this.maze.moveUp()){
+            	map.push("up");
 				mark[maze.getCurrRow()][maze.getCurrCol()]=1;
 				location.textArea.append("Moved to row " + maze.getCurrRow() + ", column " + maze.getCurrCol() + "\n");
 			}else if(checkRight()&&this.maze.moveRight()){
+				map.push("right");
 				mark[maze.getCurrRow()][maze.getCurrCol()]=1;
 				location.textArea.append("Moved to row " + maze.getCurrRow() + ", column " + maze.getCurrCol() + "\n");
+			}else {
+				String lastStr = map.pop();
+				if(lastStr.equals("down")){
+					this.maze.moveUp();
+				}else if (lastStr.equals("left")){
+					this.maze.moveRight();
+				}else if(lastStr.equals("up")){
+					this.maze.moveDown();
+				}else {
+					this.maze.moveLeft();
+				}
 			}
 
 		}	
