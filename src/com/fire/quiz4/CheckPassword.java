@@ -39,7 +39,17 @@ public class CheckPassword {
     {
         String password = JOptionPane.showInputDialog("enter your password");
         //isValidPassword(password);
-        checkPsw(password);
+        boolean flag = checkPsw(password);
+        if(flag==false){
+            System.out.println("请重新输入");
+        }
+        //密码错误情况
+        while(!flag){
+            System.out.println("confirm");
+            password = JOptionPane.showInputDialog("enter your password");
+            flag = checkPsw(password);
+        }
+
 
     }
 }
