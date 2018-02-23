@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Solver extends JFrame {
 	
-	public String filePath = "";	
+	public String filePath = "";
 
    public Solver() {
 	   
@@ -74,7 +74,7 @@ public class Solver extends JFrame {
     c.add(runButton);
     c.add(statusbar);
   }
-   
+
    void startMaze( ) {
 	  
 	   this.dispose();
