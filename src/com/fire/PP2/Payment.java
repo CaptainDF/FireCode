@@ -9,8 +9,7 @@ public class Payment {
 	public static Customer[] customers;
 	// this will check whether a card is valid
 	public static Boolean isValidCard(String number){
-
-		return true;
+		return validating.aValidNumber(number);
 
 	}// end of the isValidCard method
 
