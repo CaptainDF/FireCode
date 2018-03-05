@@ -1,5 +1,7 @@
 package com.fire.PP2;
 
+import org.junit.Test;
+
 import javax.swing.JOptionPane;
 
 public class Payment {
@@ -8,6 +10,13 @@ public class Payment {
 	public static HashCode hashing;
 	public static Customer[] customers;
 	// this will check whether a card is valid
+
+	//静态代码块,类加载的时候执行
+	static {
+		validating = new Validation();
+		hashing = new HashCode();
+	}
+
 	public static Boolean isValidCard(String number){
 		return validating.aValidNumber(number);
 
@@ -15,8 +24,7 @@ public class Payment {
 
 	// creates a hash code for the credit card number to be stored in file
     public static String createHashCode(String number){
-
-		return null;
+		return hashing.getHashCode(number);
 
 	}// end of the createHashCode method
 
@@ -31,9 +39,20 @@ public class Payment {
 	// only for accepted payments with valid cards
 	public static void displayStat(){
 		String message = "Credit Card\n";
-		for (int i = 0; i < customers.length;i++) 
+		double sum = 0;
+		double min = 0;
+		double max = 0;
+		for (int i = 0; i < customers.length;i++) {
+			sum += customers[i].getAmount();
+			if(customers[i].getAmount()>max)
+				max = customers[i].getAmount();
+			if(customers[i].getAmount()<min)
+				min = customers[i].getAmount();
 			message += customers[i].toString()+"\n";
+		}
+		double avg = sum/customers.length;
 		JOptionPane.showMessageDialog(null, message);
+
 	}// end of the displayStat method
 
 
