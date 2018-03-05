@@ -1,8 +1,5 @@
 package com.fire.quiz5.PA05Fire;
 
-import com.sun.codemodel.internal.JOp;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.swing.JOptionPane;
 
 public class School {
