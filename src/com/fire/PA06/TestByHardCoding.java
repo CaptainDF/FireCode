@@ -21,7 +21,7 @@ public class TestByHardCoding {
 		// Storing faculty information in the first element of personArray
 		personArray [0] = person1;
 		
-		System.out.println(personArray[0].toString());;
+		System.out.println(personArray[0].toString());
 		// This will print out:
 	//	Ramadan , Abdunabi , Address [street=Rockwell Hall East, houseNumber=121, city=Fort Collins, state=Colorado, zipCode=80521] , (970) 491-6227 , ramadan.abdunabi@business.colostate.edu , Professor , MyDate [year=2010, month=11, day=17]
 		

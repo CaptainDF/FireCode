@@ -21,10 +21,17 @@ public class Student extends Person{
     }
 
     // Override the abstract method from Person
+
+
 	@Override
 	public String toString() {
-
-		return null;
+		return "Student{" +
+				"status='" + status + '\'' +
+				", firstname='" + firstname + '\'' +
+				", lastName='" + lastName + '\'' +
+				", address=" + address +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", emailAddress='" + emailAddress + '\'' +
+				'}';
 	}
-
 }

@@ -29,9 +29,18 @@ public class Faculty extends Person{
     }
 
     // Override the abstract method from Person
-	@Override
-	public String toString() {
-		return firstname + " , "+ lastName + " , " + address.toString() + " , " + phoneNumber + " , " + emailAddress + " , " + rankOfFaculty +" , " + appointmentDate;
-	}
 
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "rankOfFaculty='" + rankOfFaculty + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                ", firstname='" + firstname + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
+    }
 }
