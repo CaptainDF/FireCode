@@ -1,32 +1,23 @@
-package PA07;
+package com.fire.PA07;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Scanner;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-import sda.Address;
-import sda.MyDate;
-import sda.Student;
 
 public class UserGUI extends JFrame implements ActionListener{
 	
@@ -182,19 +173,23 @@ public class UserGUI extends JFrame implements ActionListener{
 			&&!email.getText().trim().isEmpty()) {
 			if(Person.getNumberOfPersons()<personArray.length) {
 				if(rbStudent.isSelected()) {
-					String[] s =  address.split(",");
-					Address ss = new Address(s[0],s[1],s[2],s[3],s[4]);
+					String[] s =  address.getText().split(",");
+					Address ss = new Address(s[0],Integer.parseInt(s[1]),s[2],s[3],Integer.parseInt(s[4]));
 					String status = jList.getSelectedValue().toString();
 					personArray[Person.getNumberOfPersons()] = new Student(first.getText().trim(), last.getText().trim(), 
 							ss, phone.getText().trim(), email.getText().trim(), status);
 					}
 				else if(rbFaculty.isSelected()) {
 					String rankOfFaculty = jList.getSelectedValue().toString();
-					personArray[Person.getNumberOfPersons()]= new Faculty(first.getText().trim(),last.getText().trim(),addr,phone.getText().trim(),email.getText().trim(),rankOfFaculty,new MyDate());
+					//personArray[Person.getNumberOfPersons()]= new Faculty(first.getText().trim(),last.getText().trim(),ss,phone.getText().trim(),email.getText().trim(),rankOfFaculty,new MyDate());
 				}
-					
-				}
+				last.setText("");
+				first.setText("");
+				address.setText("");
+				phone.setText("");
+				email.setText("");
 			}
+		}
 		}
 					//Method to implement add button action
 				
