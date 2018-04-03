@@ -31,5 +31,68 @@ public class Regex {
 	}
 	
 	// 	add getter and setter methods
-	
+
+    public Pattern getPos() {
+        return pos;
+    }
+
+    public void setPos(Pattern pos) {
+        this.pos = pos;
+    }
+
+    public Pattern getNum() {
+        return num;
+    }
+
+    public void setNum(Pattern num) {
+        this.num = num;
+    }
+
+    public Pattern getLlayerName() {
+        return llayerName;
+    }
+
+    public void setLlayerName(Pattern llayerName) {
+        this.llayerName = llayerName;
+    }
+
+    public Pattern getStatus() {
+        return status;
+    }
+
+    public void setStatus(Pattern status) {
+        this.status = status;
+    }
+
+    public Pattern getTckl() {
+        return tckl;
+    }
+
+    public void setTckl(Pattern tckl) {
+        this.tckl = tckl;
+    }
+
+    public Pattern getSck() {
+        return sck;
+    }
+
+    public void setSck(Pattern sck) {
+        this.sck = sck;
+    }
+
+    public Pattern getIntt() {
+        return intt;
+    }
+
+    public void setIntt(Pattern intt) {
+        this.intt = intt;
+    }
+
+    public Pattern getTeam() {
+        return team;
+    }
+
+    public void setTeam(Pattern team) {
+        this.team = team;
+    }
 }

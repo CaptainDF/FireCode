@@ -20,7 +20,7 @@ public class Scraper {
 	
 	// constructor
 	public Scraper (String url) {		
-		
+		this.url = url;
 	} 
 	
 	// reads the data from a web page and searches for the string matches
