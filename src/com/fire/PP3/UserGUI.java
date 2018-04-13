@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,7 +28,14 @@ public class UserGUI extends JPanel {
 	
 	
 	  private String url;
-	  
+
+	  private Pattern pattern1 = Pattern.compile(".*</tbody>.*"); //end
+      private Pattern pattern2 = Pattern.compile("<td class=\"tbdy1\"><a href=\"/teams(.*?)</a></td></tr>"); //end of every player and signal for team
+      private Pattern pattern3 = Pattern.compile("^<td><a href=\"/player(.*?)</a></td>");//signal for player's name
+      private Pattern pattern4 = Pattern.compile("^<td class=\"tbdy\">[A-Z][A-Z]</td>");//signal for player's position
+      private Pattern pattern5 = Pattern.compile("^<td class=\"tbdy\">[\\d]*+</td>");	//signal for player's number
+      private Pattern pattern6 = Pattern.compile("<td class=\"tbdy\">[\\d.-]*+</td>");//signal for player's TCKL, SCK, INT
+
 	  public UserGUI() {
 		 
 		  // uses the url provided in the document
@@ -66,7 +74,9 @@ public class UserGUI extends JPanel {
 	 
 	// Uses the Scraper object reference to return and display the data as shown in the project document 
 	 void scrape(){
-	       
+         Regex r = new Regex(pattern1,pattern2,pattern3,pattern4,pattern5,pattern6,null,null);
+         Scraper s = new Scraper(this.url);
+
 	  }// end of scrape action event method
 	  
 	 
