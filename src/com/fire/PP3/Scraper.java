@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.MalformedURLException;
 
 import javax.swing.JFileChooser;
 
@@ -20,46 +23,53 @@ public class Scraper {
 	private String display;
 	
 	// constructor
-	public Scraper (String url) {		
+	public Scraper (String url, Regex regex) {
 		this.url = url;
+		this.regex = regex;
 	}
 
 	// reads the data from a web page and searches for the string matches
 	public int parseData()
 	{
-	    int count = 0;
-        try {
-            java.net.URL url = new java.net.URL(this.url);
+        BufferedWriter bw = null;
+        Pattern pattern1 = Pattern.compile(".*</tbody>.*"); //end
+        Pattern pattern2 = Pattern.compile("<td class=\"tbdy1\"><a href=\"/teams(.*?)</a></td></tr>"); //end of every player and signal for team
+        Pattern pattern3 = Pattern.compile("^<td><a href=\"/player(.*?)</a></td>");//signal for player's name
+        Pattern pattern4 = Pattern.compile("^<td class=\"tbdy\">[A-Z][A-Z]</td>");//signal for player's position
+        Pattern pattern5 = Pattern.compile("^<td class=\"tbdy\">[\\d]*+</td>");	//signal for player's number
+        Pattern pattern6 = Pattern.compile("<td class=\"tbdy\">[\\d.-]*+</td>");//signal for player's TCKL, SCK, INT
 
-            Scanner input = new Scanner(url.openStream());
+        String content = getPageContent("http://www.nfl.com/players/search?category=position&filter=defensiveback&conferenceAbbr=null&playerType=current&conference=ALL");
 
-            while (input.hasNext()) {
-
-                String line = input.nextLine();
-                if(line.matches("<td class=\"tbdy1\"><a href=.*")){
-                    if(line.matches(".*next</a> </span>.*")){
-                        String a= line.substring(line.indexOf("</a> <a href=")-1, line.indexOf("</a> <a href="));
-                        try{
-                            count = Integer.parseInt(a);
-                        }catch(Exception e){
-
-                        }
-                    }
-                }
-
-            }
-
-        }catch (java.net.MalformedURLException ex) {
-            System.out.println("Invalid URL");
-        }
-
-        catch (java.io.IOException ex) {
-            System.out.println("I/O Errors: no such file");
-        }
-        return count;
+        return 0;
 	}
-	
-	// shows the output (scraped data) in a text-area 
+
+    public static String getPageContent(String myurl){//在此导入网址链接
+        StringBuffer sb = new StringBuffer();
+        URL url =null;
+        Scanner scanner = null;
+        try {
+            url = new URL(myurl);
+            URLConnection conn = url.openConnection();
+
+            scanner = new Scanner(conn.getInputStream());
+            while (scanner.hasNextLine()) {
+                String content = scanner.nextLine();
+                sb.append(content).append("\r\n");
+            }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally {
+            scanner.close();
+        }
+        return sb.toString();
+    }
+
+    // shows the output (scraped data) in a text-area
 	public String display(String display){
 		
 		return null;
